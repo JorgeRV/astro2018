@@ -33,13 +33,11 @@ def rdist(l, vel, gvel, r0):
     # res2 = r0*(np.cos(rad) - np.sqrt(np.cos(rad)**2 + 1/(vel/(gvel*np.sin(rad)) + 1)**2 - 1))
 
     r = (r0*gvel*np.sin(rad))/(gvel*np.sin(rad) + vel)
-    print("r:", km_to_pc(r))
-    print("Delta r:", km_to_pc(r - r0), "pc")
+    print("Distance from Galactic center (r):", km_to_pc(r))
+    print("Delta r (r - r0):", km_to_pc(r - r0), "pc")
 
     res1 = r0 * np.cos(rad) + sm.sqrt(r ** 2 - (r0 * np.sin(rad)) ** 2)
     res2 = r0 * np.cos(rad) - sm.sqrt(r ** 2 - (r0 * np.sin(rad)) ** 2)
-
-    print(km_to_pc(res1), km_to_pc(res2))
 
     if np.iscomplex(res1) or np.iscomplex(res2):
         res1, res2 = np.abs(res1), np.abs(res2)
@@ -190,6 +188,8 @@ for nfile in range(len(archivos)):
     freq_max.append(fmax)
     print("Frequency of max intensity: ", freq, "MHz")
 
+# Print all distances obtained
+print("\n\nDistances obtained per angle:\n")
 np_dist_list = np.array(dist_list)
 np_dist_list.sort()
 for i in np_dist_list:
